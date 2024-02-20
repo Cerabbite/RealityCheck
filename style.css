@@ -1,0 +1,61 @@
+
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f7f7f7;
+    text-align: center;
+    background: linear-gradient(.25turn, black, white);
+  }
+
+  .photo_upload {
+    margin: 50px 0;
+  }
+  h1 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  #fileInput {
+    display: none;
+  }
+  .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  #preview {
+    max-width: 100%;
+    max-height: 300px;
+    margin-bottom: 20px;
+  }
+  #message {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .vl {
+  border-left: 6px solid black;
+  height: 300px;
+}
+
+.box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.roasts {
+    left: 0;
+    position: absolute;
+    color: white;
+}
+
+.compliments {
+    right: 0;
+    position: absolute;
+}
