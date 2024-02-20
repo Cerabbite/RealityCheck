@@ -5,27 +5,37 @@
     padding: 20px;
     background-color: #f7f7f7;
     text-align: center;
-    background: linear-gradient(.25turn, black, white);
+    background: linear-gradient(to right, black 0%, black 50%, white 50%, white 100%);
+  }
+
+  h2 {
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .photo_upload {
     margin: 50px 0;
   }
   h1 {
-    color: #333;
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     margin-bottom: 20px;
   }
   #fileInput {
     display: none;
   }
   .button {
-    background-color: black;
+    background-color: grey;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin: 5px;
+    width: 150px;
+    font-size: 1rem;
   }
   #preview {
     max-width: 100%;
@@ -34,28 +44,32 @@
   }
   #message {
     color: #333;
-    font-size: 18px;
+    font-size: 10px;
     margin-bottom: 20px;
   }
 
-  .vl {
-  border-left: 6px solid black;
+  /* .vl {
+  border-left: 6px solid #8f8f8f;
   height: 300px;
-}
+} */
 
 .box {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
 }
 
-.roasts {
+/* .roasts {
     left: 0;
     position: absolute;
     color: white;
 }
 
+.box h2 {
+  font-size: 2.5rem;
+}
+
 .compliments {
     right: 0;
     position: absolute;
-}
+} */

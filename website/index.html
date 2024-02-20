@@ -17,11 +17,11 @@
 <button class="button" onclick="uploadPhoto()">Upload Photo</button>
 
 <div id="message"></div>
-<img id="preview" src="" alt="Preview Image">
+<img id="preview" src="">
 </div>
 <div class="box">
 <div class="roasts"><h2>Roasts</h2></div>
-<div class="vl"></div>
+<!-- <div class="vl"></div> -->
 <div class="compliments"><h2>Compliments</h2></div>
 </div>
 
@@ -33,8 +33,6 @@ function uploadPhoto() {
     showMessage("Please select a file.");
     return;
   }
-
-  // You can perform additional processing or validation here before uploading the photo
 
   showMessage("Photo uploaded successfully.");
   displayPreview(file);
