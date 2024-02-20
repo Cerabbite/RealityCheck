@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliment/Roast Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f7f7f7;
+    text-align: center;
+    background: linear-gradient(.25turn, black, white);
+  }
+
+  .photo_upload {
+    margin: 50px 0;
+  }
+  h1 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  #fileInput {
+    display: none;
+  }
+  .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  #preview {
+    max-width: 100%;
+    max-height: 300px;
+    margin-bottom: 20px;
+  }
+  #message {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .vl {
+  border-left: 6px solid black;
+  height: 200px;
+  margin: auto;
+  display: inline-block;
+}
+
+</style>
+</head>
+<body>
+
+<h1>Compliment/Roast Generator</h1>
+<div class="photo_upload">
+<h2>Upload a Photo</h2>
+
+<input type="file" accept="image/*" id="fileInput">
+<label for="fileInput" class="button">Choose Photo</label>
+<button class="button" onclick="uploadPhoto()">Upload Photo</button>
+
+<div id="message"></div>
+<img id="preview" src="" alt="Preview Image">
+</div>
+<div class="compliments"></div>
+<div class="vl"></div>
+<div class="roasts"></div>
+
+<script>
+function uploadPhoto() {
+  const fileInput = document.getElementById('fileInput');
+  const file = fileInput.files[0];
+  if (!file) {
+    showMessage("Please select a file.");
+    return;
+  }
+
+  // You can perform additional processing or validation here before uploading the photo
+
+  showMessage("Photo uploaded successfully.");
+  displayPreview(file);
+}
+
+function displayPreview(file) {
+  const reader = new FileReader();
+  reader.onload = function(event) {
+    const preview = document.getElementById('preview');
+    preview.src = event.target.result;
+  }
+  reader.readAsDataURL(file);
+}
+
+function showMessage(message) {
+  const messageDiv = document.getElementById('message');
+  messageDiv.textContent = message;
+}
+
+</script>
+
+</body>
+</html>
