@@ -7,16 +7,6 @@
     text-align: center;
     background: linear-gradient(to right, black 0%, black 50%, white 50%, white 100%);
   }
-
-  h2 {
-    background: -webkit-linear-gradient(#eee, #333);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .photo_upload {
-    margin: 50px 0;
-  }
   h1 {
     background: -webkit-linear-gradient(#eee, #333);
     -webkit-background-clip: text;
@@ -48,28 +38,20 @@
     margin-bottom: 20px;
   }
 
-  /* .vl {
-  border-left: 6px solid #8f8f8f;
-  height: 300px;
-} */
-
 .box {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-/* .roasts {
-    left: 0;
-    position: absolute;
-    color: white;
+.radio_buttons {
+  color: white;
 }
 
-.box h2 {
-  font-size: 2.5rem;
+.roasts {
+  color: white;
 }
 
 .compliments {
-    right: 0;
-    position: absolute;
-} */
+  color: black;
+}

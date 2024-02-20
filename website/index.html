@@ -7,10 +7,19 @@
 <title>Compliment/Roast Generator</title>
 </head>
 <body>
-
-<h1>Compliment/Roast Generator</h1>
+<h1>Reality Check</h1>
+<div class="box">
+  <div class="radio_buttons">
+<h3>What would you like to hear today?</h3>
+  <input type="radio" id="rb_roast" name="choice" value="roast">
+  <label for="roast">Roast</label>
+  <input type="radio" id="rb_compliment" name="choice" value="compliment">
+  <label for="compliment">Compliment</label>
+  <input type="radio" id="rb_both" name="choice" value="both">
+  <label for="both">Both</label>
+  </div>
 <div class="photo_upload">
-<h2>Upload a Photo</h2>
+<h3>Upload a Photo</h3>
 
 <input type="file" accept="image/*" id="fileInput">
 <label for="fileInput" class="button">Choose Photo</label>
@@ -18,6 +27,7 @@
 
 <div id="message"></div>
 <img id="preview" src="">
+</div>
 </div>
 <div class="box">
 <div class="roasts"><h2>Roasts</h2></div>
