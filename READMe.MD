@@ -6,6 +6,6 @@ We were allowed to be virtuous or malicious. The Delivery is at 16:00 on 21/02/2
 ## Table of contents
 
 * Introduction
-* [OpenAI Prompt](OpenAI-Prompt.md)
+* [OpenAI Prompt](backend/OpenAI-Prompt.md)
 
 ## Introduction
