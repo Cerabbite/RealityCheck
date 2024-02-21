@@ -11,7 +11,7 @@ client = OpenAI()
 
 
 def get_compliments_and_roasts(img_url):
-    code = get_facial_features(img_url)
+    code, facial_features = get_facial_features(img_url)
     if code != 0:
         # Todo: Add better error handling
         print(f"Error occured with code: {code}")
@@ -34,11 +34,11 @@ def get_compliments_and_roasts(img_url):
                 "content": "Compliments: (You have a beautiful smile that lights up your whole face. Your high cheekbones give you such a sharp and attractive look. Your oval face shape is very aesthetically pleasing. Your straight hair complements your features perfectly. Your expression exudes warmth and positivity). Roasts: (Those bags under your eyes make you look like you haven't slept in years. Your double chin is stealing all the attention from the rest of your features. Your big nose is really standing out in all the wrong ways. Your chubby cheeks make you look like a chipmunk storing up for winter. Your receding hairline is a clear sign that Father Time is catching up to you.)",
             },
             # Line 18 is for testing, Line19 is for user input
-            {
-                "role": "user",
-                "content": "5oclock shadow: no (22%), age: 15 (60%), arched eyebrows: no (45%), attractive: yes (32%), bags under eyes: no (37%), bald: no (80%), bangs: no (87%), beard: no (77%), big lips: no (43%), big nose: no (17%), black hair: yes (89%), blond hair: no (99%), blurry: no, brown hair: no (92%), bushy eyebrows: yes (84%), chubby: no (47%), double chin: no (75%), expression: neutral (88%), gender: male (96%), glasses: no, goatee: no, gray hair: no, heavy makeup: no (89%), high cheekbones: no (90%), mouth open: no (97%), mustache: no (85%), narrow eyes: no, oval face: yes (63%), pale skin: yes (3%), pitch: -10.1, pointy nose: no (79%), race: white (88%), receding hairline: no (37%), rosy cheeks: no, sideburns: no, straight hair: yes (93%), wavy hair: no, wearing earrings: no (70%), wearing hat: no (84%), wearing lipstick: no (89%), wearing necklace: no, wearing necktie: yes (46%), yaw: -0.51, young: yes (94%),",
-            },
-            #{"role": "user", "content": output_string}
+            # {
+            #    "role": "user",
+            #    "content": "5oclock shadow: no (22%), age: 15 (60%), arched eyebrows: no (45%), attractive: yes (32%), bags under eyes: no (37%), bald: no (80%), bangs: no (87%), beard: no (77%), big lips: no (43%), big nose: no (17%), black hair: yes (89%), blond hair: no (99%), blurry: no, brown hair: no (92%), bushy eyebrows: yes (84%), chubby: no (47%), double chin: no (75%), expression: neutral (88%), gender: male (96%), glasses: no, goatee: no, gray hair: no, heavy makeup: no (89%), high cheekbones: no (90%), mouth open: no (97%), mustache: no (85%), narrow eyes: no, oval face: yes (63%), pale skin: yes (3%), pitch: -10.1, pointy nose: no (79%), race: white (88%), receding hairline: no (37%), rosy cheeks: no, sideburns: no, straight hair: yes (93%), wavy hair: no, wearing earrings: no (70%), wearing hat: no (84%), wearing lipstick: no (89%), wearing necklace: no, wearing necktie: yes (46%), yaw: -0.51, young: yes (94%),",
+            # },
+            {"role": "user", "content": facial_features}
         ],
     )
 
