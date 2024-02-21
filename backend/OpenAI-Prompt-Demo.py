@@ -9,7 +9,7 @@ load_dotenv()
 
 return_code, data = get_facial_features("Hello")
 if return_code != 0:
-    raise Exception("Received a non zero return code")
+    raise Exception(f"Received a non zero return code: {return_code}\n{data}")
 
 tags = data["tags"]
 output_string = ", ".join(
