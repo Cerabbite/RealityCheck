@@ -1,68 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-<title>Compliment/Roast Generator</title>
-</head>
-<body>
-<div class="title"><h1>Reality</h1><h1>Check</h1></div>
-<div class="radio_buttons">
-<div class="choices">
-<h3>What would you like to hear today?</h3>
-  <input type="radio" id="rb_roast" name="choice" value="roast">
-  <label for="roast">Roast</label><br>
-  <input type="radio" id="rb_compliment" name="choice" value="compliment">
-  <label for="compliment">Compliment</label><br>
-  <input type="radio" id="rb_both" name="choice" value="both">
-  <label for="both">Both</label>
-  </div>
-</div>
-<div class="photo_upload">
-<h3 class="upload_text">Upload a Photo</h3>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Compliment/Roast Generator</title>
+  </head>
+  <body>
+    <div class="title">
+      <h1>Reality</h1>
+      <h1>Check</h1>
+    </div>
+    <div class="radio_buttons">
+      <div class="choices">
+        <h3>What would you like to hear today?</h3>
+        <input type="radio" id="rb_roast" name="choice" value="roast" />
+        <label for="roast">Roast</label><br />
+        <input
+          type="radio"
+          id="rb_compliment"
+          name="choice"
+          value="compliment" />
+        <label for="compliment">Compliment</label><br />
+        <input type="radio" id="rb_both" name="choice" value="both" />
+        <label for="both">Both</label>
+      </div>
+    </div>
+    <div class="photo_upload">
+      <h3 class="upload_text">Upload a Photo</h3>
 
-<input type="file" accept="image/*" id="fileInput">
-<label for="fileInput" class="button">Choose Photo</label>
-<button class="button" onclick="uploadPhoto()">Upload Photo</button>
+      <input type="file" accept="image/*" id="fileInput" />
+      <label for="fileInput" class="button">Choose Photo</label>
+      <button class="button" onclick="uploadPhoto()">Upload Photo</button>
 
-<div id="message"></div>
-<img id="preview" src="">
-</div>
-<div class="box">
-<div class="roasts"><h2>Roasts</h2></div>
-<!-- <div class="vl"></div> -->
-<div class="compliments"><h2>Compliments</h2></div>
-</div>
+      <div id="message"></div>
+      <img id="preview" src />
+    </div>
+    <div class="box">
+      <div class="roasts"><h2>Roasts</h2></div>
+      <!-- <div class="vl"></div> -->
+      <div class="compliments"><h2>Compliments</h2></div>
+    </div>
 
-<script>
-function uploadPhoto() {
-  const fileInput = document.getElementById('fileInput');
-  const file = fileInput.files[0];
-  if (!file) {
-    showMessage("Please select a file.");
-    return;
-  }
+    <script>
+      let file;
+      async function uploadPhoto() {
+        const fileInput = document.getElementById("fileInput");
+        file = fileInput.files[0];
+        if (!file) {
+          showMessage("Please select a file.");
+          return;
+        }
 
-  showMessage("Photo uploaded successfully.");
-  displayPreview(file);
-}
+        showMessage("Photo uploaded successfully.");
+        displayPreview(file);
+        
+        image_url = uploadToImgbb(file)
+        
+       
+      }
 
-function displayPreview(file) {
-  const reader = new FileReader();
-  reader.onload = function(event) {
-    const preview = document.getElementById('preview');
-    preview.src = event.target.result;
-  }
-  reader.readAsDataURL(file);
-}
+      function displayPreview(file) {
+        const preview = document.getElementById("preview");
+        preview.src = URL.createObjectURL(file);
+      }
 
-function showMessage(message) {
-  const messageDiv = document.getElementById('message');
-  messageDiv.textContent = message;
-}
+      async function uploadToImgbb(file) {
+        var url = "https://api.imgbb.com/1/upload";
 
-</script>
+        // Set the API key
+        var key = "ce1b4391a061ddebb83ede95642e9ea0";
 
-</body>
+        // Create a new FormData object
+        var formData = new FormData();
+
+        // Append the image file and the API key to the FormData object
+        formData.append("image", file);
+        formData.append("key", key);
+
+        // Set the expiration time for the image in seconds (optional)
+        formData.append("expiration", 60);
+
+        // Create a new XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+
+        // Set the callback function for when the request is completed
+        xhr.onload = function () {
+          // Parse the response JSON
+          var response = JSON.parse(this.responseText);
+
+          // Check if the request was successful
+          if (response.status === 200) {
+            // Print the response JSON
+            console.log(response);
+
+            // Print the URL of the uploaded image
+            console.log(response.data.url);
+
+            getRealityCheck(response.data.url);
+            return response.data.url;
+          } else {
+            // Print the error message
+            console.error(response.error.message);
+          }
+        };
+
+        // Open a POST request to the API endpoint
+        xhr.open("POST", url);
+
+        // Send the FormData object
+        xhr.send(formData);
+      }
+
+      async function getRealityCheck(image_url) {
+        var url = "http://127.0.0.1:5000/upload?image_url="+image_url;
+        console.log(url);
+
+        // Create a new XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+
+        // Set the callback function for when the request is completed
+        xhr.onload = function () {
+          // Parse the response JSON
+          var response = JSON.parse(this.responseText);
+
+          // Check if the request was successful
+          if (response.status === 200) {
+            // Print the response JSON
+            console.log(response);
+          } else {
+            // Print the error message
+            console.error(response.error.message);
+          }
+        };
+
+        // Open a POST request to the API endpoint
+        xhr.open("GET", url);
+        xhr.send();
+      }
+
+      function showMessage(message) {
+        const messageDiv = document.getElementById("message");
+        messageDiv.textContent = message;
+      }
+    </script>
+  </body>
 </html>
