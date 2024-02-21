@@ -22,7 +22,13 @@ def get_facial_features(path=None, url=None, filename=None):
     else:
         return [-2, "Path feature is not yet implemented"]
 
-    response = requests.post(url, json=data, timeout=20)
+    # TO BE ADJUSTED
+    # URL for uri
+    api_url = "https://www.betafaceapi.com/api/v2/media"
+    # URL for file upload
+    #api_url = "https://www.betafaceapi.com/api/v2/media/file"
+
+    response = requests.post(api_url, json=data, timeout=20)
     # print(f"Status Code: {response.status_code}")
     # print(f"JSON Response: {response.json()}")
     if response.status_code != 200:
