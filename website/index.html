@@ -28,19 +28,20 @@
     </div>
     <div class="photo_upload">
       <h3 class="upload_text">Upload a Photo</h3>
-
+    
       <input type="file" accept="image/*" id="fileInput" />
       <label for="fileInput" class="button">Choose Photo</label>
       <button class="button" onclick="uploadPhoto()">Upload Photo</button>
-
+    
       <div id="message"></div>
       <img id="preview" src />
     </div>
     <div class="box">
-      <div class="roasts"><h2>Roasts</h2></div>
+      <div class="roasts" id="roastsContainer"><h2>Roasts</h2><p id="roasts"></p></div>
       <!-- <div class="vl"></div> -->
-      <div class="compliments"><h2>Compliments</h2></div>
+      <div class="compliments" id="complimentsContainer"><h2>Compliments</h2><p id="compliments"></p></div>
     </div>
+    
 
     <script>
       let file;
@@ -59,6 +60,37 @@
         
        
       }
+
+      async function getRealityCheck(image_url) {
+  var url = "http://127.0.0.1:5000/upload?image_url=" + image_url;
+
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+
+  // Set the callback function for when the request is completed
+  xhr.onload = function () {
+    // Parse the response JSON
+    var response = JSON.parse(this.responseText);
+
+    // Check if the request was successful
+    if (response.status === 200) {
+      // Print the response JSON
+      console.log(response);
+
+      // Update the HTML elements with the returned values
+      document.getElementById("compliments").innerText = response.compliments;
+      document.getElementById("roasts").innerText = response.roasts;
+    } else {
+      // Print the error message
+      console.error(response.error.message);
+    }
+  };
+
+  // Open a GET request to the API endpoint
+  xhr.open("GET", url);
+  xhr.send();
+}
+
 
       function displayPreview(file) {
         const preview = document.getElementById("preview");
