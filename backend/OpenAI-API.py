@@ -1,3 +1,4 @@
+import json
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -16,5 +17,19 @@ response = client.chat.completions.create(
                 {"role": "user", "content": "5oclock shadow: no (22%), age: 15 (60%), arched eyebrows: no (45%), attractive: yes (32%), bags under eyes: no (37%), bald: no (80%), bangs: no (87%), beard: no (77%), big lips: no (43%), big nose: no (17%), black hair: yes (89%), blond hair: no (99%), blurry: no, brown hair: no (92%), bushy eyebrows: yes (84%), chubby: no (47%), double chin: no (75%), expression: neutral (88%), gender: male (96%), glasses: no, goatee: no, gray hair: no, heavy makeup: no (89%), high cheekbones: no (90%), mouth open: no (97%), mustache: no (85%), narrow eyes: no, oval face: yes (63%), pale skin: yes (3%), pitch: -10.1, pointy nose: no (79%), race: white (88%), receding hairline: no (37%), rosy cheeks: no, sideburns: no, straight hair: yes (93%), wavy hair: no, wearing earrings: no (70%), wearing hat: no (84%), wearing lipstick: no (89%), wearing necklace: no, wearing necktie: yes (46%), yaw: -0.51, young: yes (94%),"}
                 ]
 )
-#this will print the response from the bot 
-print(response.choices[0].message.content)
+
+response_content = response.choices[0].message.content
+
+response_data = json.loads(response_content)
+
+# Extract compliments and roasts
+compliments = response_data.get("Compliments", {})
+roasts = response_data.get("Roasts", {})
+
+both = compliments.copy()
+both.update(roasts)
+
+# Now 'compliments' and 'roasts' contain the respective content
+print("Compliments:", compliments)
+print("Roasts:", roasts)
+print("Both:", both )
