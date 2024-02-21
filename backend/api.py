@@ -8,7 +8,7 @@ app = Flask(__name__)
 def upload():
     img_url = request.args.get("image_url")
     print(img_url)
-    return f"Hello <b>Motherfuckers</b>\n{img_url}"
+    return f"Hellon{img_url}"
 
 
 if __name__ == "__main__":
