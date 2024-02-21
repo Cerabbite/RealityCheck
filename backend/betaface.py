@@ -8,9 +8,7 @@ import requests
 #     encoded_string = base64.b32encode(image_file.read())
 
 
-def get_facial_features(
-    path: str = None, url: str = None, filename: str = None
-) -> [int, json | str]:
+def get_facial_features(path=None, url=None, filename=None):
     if not path:
         if not filename:
             return [-1, "Excepted a filename"]
