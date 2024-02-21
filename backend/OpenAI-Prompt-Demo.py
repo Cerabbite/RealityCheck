@@ -7,7 +7,8 @@ from betaface import get_facial_features
 
 load_dotenv()
 
-return_code, data = get_facial_features("Hello")
+# Demo pic: https://www.faceplusplus.com/demo/images/demo-pic35.jpg
+return_code, data = get_facial_features(filename="demo-pic35.jpg", url="https://www.faceplusplus.com/demo/images/demo-pic35.jpg")
 if return_code != 0:
     raise Exception(f"Received a non zero return code: {return_code}\n{data}")
 
