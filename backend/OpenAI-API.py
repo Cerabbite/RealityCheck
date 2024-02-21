@@ -7,21 +7,11 @@ from betaface import get_facial_features
 load_dotenv()
 client = OpenAI()
 
-"""
-# Demo pic: https://www.faceplusplus.com/demo/images/demo-pic35.jpg
-return_code, data = get_facial_features(filename="demo-pic35.jpg", url="https://www.faceplusplus.com/demo/images/demo-pic35.jpg")
-if return_code != 0:
-    raise Exception(f"Received a non zero return code: {return_code}\n{data}")
 
-tags = data["tags"]
-output_string = ", ".join(
-    f'{tag["name"]}: {tag["value"]} ({tag["confidence"]*100:.0f}%)' for tag in tags
-)
-"""
 
 
 def get_compliments_and_roasts(img_url):
-    code, facial_features = get_facial_features(img_url)
+    code = get_facial_features(img_url)
     if code != 0:
         # Todo: Add better error handling
         print(f"Error occured with code: {code}")
@@ -48,7 +38,7 @@ def get_compliments_and_roasts(img_url):
                 "role": "user",
                 "content": "5oclock shadow: no (22%), age: 15 (60%), arched eyebrows: no (45%), attractive: yes (32%), bags under eyes: no (37%), bald: no (80%), bangs: no (87%), beard: no (77%), big lips: no (43%), big nose: no (17%), black hair: yes (89%), blond hair: no (99%), blurry: no, brown hair: no (92%), bushy eyebrows: yes (84%), chubby: no (47%), double chin: no (75%), expression: neutral (88%), gender: male (96%), glasses: no, goatee: no, gray hair: no, heavy makeup: no (89%), high cheekbones: no (90%), mouth open: no (97%), mustache: no (85%), narrow eyes: no, oval face: yes (63%), pale skin: yes (3%), pitch: -10.1, pointy nose: no (79%), race: white (88%), receding hairline: no (37%), rosy cheeks: no, sideburns: no, straight hair: yes (93%), wavy hair: no, wearing earrings: no (70%), wearing hat: no (84%), wearing lipstick: no (89%), wearing necklace: no, wearing necktie: yes (46%), yaw: -0.51, young: yes (94%),",
             },
-            # {"role": "user", "content": output_string}
+            #{"role": "user", "content": output_string}
         ],
     )
 
