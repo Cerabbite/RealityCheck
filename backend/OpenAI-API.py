@@ -6,7 +6,7 @@ client = OpenAI()
 
 response = client.chat.completions.create(
     model = "gpt-3.5-turbo",
-    temperature = 2.0, #allows for max creativity
+    temperature = 1.0, 
     max_tokens = 4096, #max tokens 3.5-turbo can handle
     response_format = {"type": "json_object"},
     messages = [{"role": "system", "content": "You are giving people a reality check. Roast them based on 5 aspects, and also compliment them based on 5 aspects. The output should be in json format."},
