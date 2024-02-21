@@ -15,5 +15,4 @@ response = client.chat.completions.create(
                 ]
 )
 
-print(response.choices[0].message.content)
 # To get the content from the response use: print(response.choices[0].message.content)
